@@ -1,0 +1,255 @@
+/* 
+  Premium Nature/Bio Design System 
+  Designed by Antigravity
+*/
+
+:root {
+  /* Premium Palette */
+  --premium-green-deep: #2d3b2d;
+  --premium-gold-mat: #c5a059;
+  --premium-sand-light: #faf9f6;
+  --premium-shadow-soft: rgba(27, 31, 26, 0.08);
+
+  /* Glassmorphism */
+  --header-glass-bg: rgba(250, 249, 246, 0.8);
+  --header-glass-blur: 12px;
+}
+
+/* Base Refinements */
+body {
+  background-color: var(--premium-sand-light);
+  color: var(--premium-green-deep);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+  font-family: "Playfair Display", serif !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Premium Header Structure */
+.premium-header-wrapper {
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(15px);
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(45, 59, 45, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.premium-header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2.5rem;
+}
+
+.premium-header__logo-img {
+  max-width: 220px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-header__logo-img:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+.premium-header__nav {
+  border-top: 1px solid rgba(45, 59, 45, 0.05);
+  padding-top: 2rem;
+}
+
+.premium-header__menu {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.premium-header__link {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--premium-green-deep);
+  position: relative;
+  padding: 0.8rem 0;
+  transition: color 0.4s ease;
+}
+
+.premium-header__link:hover {
+  color: var(--premium-gold-mat);
+}
+
+.premium-header__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--premium-gold-mat);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+}
+
+.premium-header__link:hover::after,
+.premium-header__link--active::after {
+  width: 40px;
+}
+
+/* Premium Hero Refinements */
+.premium-hero {
+  padding: 10rem 0;
+  background: radial-gradient(circle at 10% 20%, rgba(250, 249, 246, 1) 0%, rgba(245, 243, 238, 1) 90.2%);
+}
+
+.premium-hero__heading {
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  text-shadow: 0 10px 20px rgba(0,0,0,0.02);
+}
+
+.premium-hero__main-image {
+  box-shadow: 0 50px 100px -20px rgba(45, 59, 45, 0.15), 0 30px 60px -30px rgba(0, 0, 0, 0.2);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-hero:hover .premium-hero__main-image {
+  transform: scale(1.02);
+}
+
+/* Luxury Product Cards */
+.premium-card {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  background: white;
+  border: 1px solid rgba(45, 59, 45, 0.05);
+}
+
+.premium-card__overlay {
+  background: linear-gradient(to top, rgba(29, 38, 29, 0.9) 0%, rgba(29, 38, 29, 0.4) 40%, transparent 100%);
+}
+
+.premium-card__title {
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Bio Features Boutique Style */
+.premium-bio__item {
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-bio__item h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.premium-bio__item p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Redefine Dawn Header to hide it if needed */
+.header-wrapper {
+  display: none !important;
+}
+
+/* Premium Buttons */
+.button,
+.shopify-payment-button__button {
+  border-radius: 4px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.button--primary {
+  background-color: var(--premium-green-deep) !important;
+  border-color: var(--premium-green-deep) !important;
+}
+
+.button--primary:hover {
+  background-color: var(--premium-gold-mat) !important;
+  border-color: var(--premium-gold-mat) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--premium-shadow-soft);
+}
+
+/* Product Cards Premium Look */
+.card-wrapper {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease !important;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px var(--premium-shadow-soft) !important;
+}
+
+.card__inner {
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+  background-color: var(--premium-green-deep) !important;
+  color: var(--premium-sand-light) !important;
+}
+
+/* Navigation Links */
+.header__menu-item {
+  position: relative;
+  color: var(--premium-green-deep) !important;
+}
+
+.header__menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--premium-gold-mat);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.header__menu-item:hover::after {
+  width: 1.5rem;
+}
+
+/* Micro-animations */
+@keyframes fadeInPremium {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: fadeInPremium 0.8s ease-out forwards;
+}

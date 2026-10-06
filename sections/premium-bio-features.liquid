@@ -1,0 +1,189 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background: linear-gradient(180deg, rgba(45, 59, 45, 0.03) 0%, rgba(250, 249, 246, 0) 100%);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .premium-bio__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    color: var(--premium-green-deep);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .premium-bio__title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--premium-gold-mat);
+    margin: 2rem auto 0;
+  }
+
+  .premium-bio__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .premium-bio__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .premium-bio__item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(45, 59, 45, 0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  }
+
+  .premium-bio__item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(45, 59, 45, 0.08);
+    border-color: var(--premium-gold-mat);
+  }
+
+  .premium-bio__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(197, 160, 89, 0.1);
+    border-radius: 50%;
+    color: var(--premium-gold-mat);
+  }
+
+  .premium-bio__item h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .premium-bio__item p {
+    color: rgba(45, 59, 45, 0.8);
+    line-height: 1.6;
+    font-size: 1.5rem;
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <h2 class="premium-bio__title">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+
+    <div class="premium-bio__grid">
+      {%- for block in section.blocks -%}
+        <div class="premium-bio__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="premium-bio__icon">
+              {{ block.settings.icon | inline_asset_content }}
+            </div>
+          {%- endif -%}
+          <h3>{{ block.settings.heading | escape }}</h3>
+          <p>{{ block.settings.text | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Premium Bio Features",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Pourquoi choisir nos produits Bio ?",
+      "label": "Titre de la section"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Caractéristique",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "100% Organique",
+          "label": "En-tête"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "default": "Nos produits sont cultivés sans pesticides ni engrais chimiques pour une pureté absolue.",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Bio Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Qualité Premium",
+            "text": "Une sélection rigoureuse des meilleurs ingrédients naturels."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Respect de la Nature",
+            "text": "Des processus de fabrication éco-responsables et durables."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Pureté Garantie",
+            "text": "Certifié bio par les organismes de contrôle les plus stricts."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

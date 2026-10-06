@@ -1,0 +1,103 @@
+{% comment %}
+  Renders a premium product card
+{% endcomment %}
+
+<div class="premium-card">
+  <div class="premium-card__inner">
+    <a href="{{ card_product.url }}" class="premium-card__link">
+      <div class="premium-card__media">
+        {%- if card_product.featured_media -%}
+          {{
+            card_product.featured_media
+            | image_url: width: 800
+            | image_tag: class: 'premium-card__image', loading: 'lazy'
+          }}
+        {%- else -%}
+          {{ 'product-apparel-2' | placeholder_svg_tag: 'premium-card__image' }}
+        {%- endif -%}
+      </div>
+
+      <div class="premium-card__overlay">
+        <div class="premium-card__info">
+          {%- if show_vendor -%}
+            <span class="premium-card__vendor">{{ card_product.vendor }}</span>
+          {%- endif -%}
+          <h3 class="premium-card__title">{{ card_product.title | escape }}</h3>
+          <div class="premium-card__price">
+            {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+{%- style -%}
+  .premium-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .premium-card__inner {
+    position: relative;
+    aspect-ratio: 4/5;
+  }
+
+  .premium-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .premium-card:hover .premium-card__image {
+    transform: scale(1.1);
+  }
+
+  .premium-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(45, 59, 45, 0.8) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .premium-card:hover .premium-card__overlay {
+    opacity: 1;
+  }
+
+  .premium-card__info {
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .premium-card:hover .premium-card__info {
+    transform: translateY(0);
+  }
+
+  .premium-card__vendor {
+    display: block;
+    color: var(--premium-gold-mat);
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+
+  .premium-card__title {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .premium-card__price .price {
+    color: #fff !important;
+    font-weight: 500;
+  }
+{%- endstyle -%}
